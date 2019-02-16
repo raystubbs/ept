@@ -80,3 +80,10 @@ following macros are defined:
 * `HAS_32BIT_ADDR`
 * `HAS_64BIT_ADDR`
 
+## Thread Local
+If the header can figure out how to define thread local variables for
+the compiler/target combo then it'll define a `THREADVAR()` macro to
+wrap the type spec of a thread local variable.  For example:
+
+    THREADVAR(const int) myThreadLocalVar;
+

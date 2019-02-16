@@ -187,4 +187,14 @@ static int const EPT_ENDIAN_TEST = 1;
 #define HAS_32BIT_ADDR (HAS_8BIT_CHAR && sizeof(void*) == 4)
 #define HAS_64BIT_ADDR (HAS_8BIT_CHAR && sizeof(void*) == 8)
 
+#if WITH_GCC || WITH_CLANG
+    #define THREADVAR( T ) __thread T
+#elif WITH_MSC
+    #define THREADVAR( T ) __declspec( thread ) T
+#elif defined(__thread)
+    #define THREADVAR( T ) __thread T
+#elif defined(thread_local)
+    #define THREADVAR( T ) thread_local T
+#endif
+
 #endif
